@@ -19,3 +19,4 @@ if __name__ == "__main__":
     athlete1.set_number(10)
     print(athlete1) #Output: Athlete: Lionel Messi, number: 10
     print(repr(athlete1)) #Output: Athlete (name='Lionel Messi', number=10)
+    
