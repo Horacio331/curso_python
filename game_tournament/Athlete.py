@@ -10,10 +10,12 @@ class Athlete:
     def __repr__(self):
         """Official String representation of the Athlete object. """
         return f"Athlete(name='{self.name}', number={self.number})"
+    def set_number(self, number):
+        """ Set the athele's number."""
 
 if __name__ == "__main__":
     #Example usage
     athlete1 = Athlete("Lionel Messi")
-    athlete1.number = 10
+    athlete1.set_number(10)
     print(athlete1) #Output: Athlete: Lionel Messi, number: 10
     print(repr(athlete1)) #Output: Athlete (name='Lionel Messi', number=10)
