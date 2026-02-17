@@ -1,7 +1,7 @@
 """ 
 | Athlete class representing a player in the tournament. | """
 import random
-
+ 
 class  Athlete:
     """ Athlete class representing a player in the tournament. """
     def __init__(self, name):
