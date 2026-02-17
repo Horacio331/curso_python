@@ -10,7 +10,7 @@ class  Athlete:
         self.number= random.randint(1, 99)  # Assign a random number to the athlete
     def __str__(self):
         """ String representation of the Athlete object. """
-        return f"Athlete: {self.name}, Number: {self.number}"
+        return f"Athlete: {self.name}, Number: {self.number}" 
     def __repr__(self):
         """ Official string representation of the Athlete object. """
         return f"Athlete(name='{self.name}', number={self.number})"
