@@ -136,7 +136,8 @@ def a_tournament():
                        team_spain, team_brazil, team_italia, team_japan]
     json_string = ""
     for team in tournament_list:
-        json_string += f"{team.to_json()}\n"
+        json_string += f"{team.to_json()},\n"
+        json_string = f"[\n{json_string[:-2]}\n]" #borra los ultimos 2 dijitos del ciclo
     return json_string
 
 
