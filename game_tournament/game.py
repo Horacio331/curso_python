@@ -134,11 +134,7 @@ def a_tournament():
     tournament_list = [team_mex, team_arg,
                        team_peru, team_france,
                        team_spain, team_brazil, team_italia, team_japan]
-    json_string = ""
-    for team in tournament_list:
-        json_string += f"{team.to_json()},\n"
-        json_string = f"[\n{json_string[:-2]}\n]" #borra los ultimos 2 dijitos del ciclo
-    return json_string
+    return [team.to_json() for team in tournament_list]
 
 
 if __name__ == "__main__":
