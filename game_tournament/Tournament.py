@@ -8,6 +8,7 @@ from Team import Team
 from Sport import Sport
 from Athlete import Athlete
 from Group import Group
+
 class Tournament:
     """ Tournament class represents a tournament. It has a name, a list of games, and a list of teams. """
     def __init__(self, name):
@@ -42,16 +43,15 @@ class Tournament:
             "games": [game.to_json() for game in self.games]
         }
     def set_group(self, group_list, group_name):
-        """Set the group for each team in the tournament. """
+        """ Set the group for each team in the tournament. """
         group = Group(group_name)
         for team in group_list:
             group.add_team(team)
         group.add_games()
         self.groups[group_name] = group
-
     def set_group_stage(self):
-        """Set the group stage """
-        if len(self.teams) ==8:
+        """ Set the group stage """
+        if len(self.teams) == 8:
             # Create two groups of 4 teams each
             group_a = self.teams[:4]
             group_b = self.teams[4:]
@@ -59,7 +59,6 @@ class Tournament:
             self.set_group(group_a, "Group A")
             # Create games for group B
             self.set_group(group_b, "Group B")
-
     def load_json(self, filename):
         """ Load a Tournament object from a JSON file."""
         print("Tournament")
@@ -76,11 +75,19 @@ class Tournament:
                 for player in players:
                     team.add_athlete(Athlete(player))
                 self.add_team(team)
+    def display_tournament(self):
+        """ Display the tournament. """
+        print(f"Tournament: {self.name}")
+        for group in self.groups:
+            self.groups[group].display_group()
+        for group in self.groups:
+            self.groups[group].display_group_games()
 
 if __name__ == "__main__":
     tournament = Tournament("FIFA World Cup")
     tournament.load_json("tournament.json")
     tournament.set_group_stage()
-    print(tournament.groups["Group A"])
-    print(tournament.groups["Group B"])
-    print(tournament)
+    tournament.display_tournament()
+   # print(tournament.groups['Group A'].games)
+   # print(tournament.groups['Group B'].games)
+   # print(tournament)
