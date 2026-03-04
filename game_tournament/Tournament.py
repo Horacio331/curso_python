@@ -3,7 +3,7 @@ Docstring for game_tournament.Tournament
 """
 import random
 import json
-from game import Game
+from Game import Game
 from Team import Team
 from Sport import Sport
 from Athlete import Athlete
@@ -88,6 +88,6 @@ if __name__ == "__main__":
     tournament.load_json("tournament.json")
     tournament.set_group_stage()
     tournament.display_tournament()
-   # print(tournament.groups['Group A'].games)
-   # print(tournament.groups['Group B'].games)
+    #print(tournament.groups['Group A'].games)
+    #print(tournament.groups['Group B'].games)
    # print(tournament)
