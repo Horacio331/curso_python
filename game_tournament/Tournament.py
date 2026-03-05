@@ -3,7 +3,7 @@ Docstring for game_tournament.Tournament
 """
 import random
 import json
-from Game import Game
+from game import Game
 from Team import Team
 from Sport import Sport
 from Athlete import Athlete
@@ -61,7 +61,7 @@ class Tournament:
             self.set_group(group_b, "Group B")
     def load_json(self, filename):
         """ Load a Tournament object from a JSON file."""
-        print("Tournament")
+        # print("Tournament") when you run the program its appears 2 times.
         with open(filename, 'r', encoding="utf-8") as f:
             data = json.load(f)
             for team_data in data:
@@ -82,12 +82,18 @@ class Tournament:
             self.groups[group].display_group()
         for group in self.groups:
             self.groups[group].display_group_games()
+    
+    def display_games(self):
+        """ Display the games """
+        for game in self.games:
+            print(game)
 
 if __name__ == "__main__":
     tournament = Tournament("FIFA World Cup")
     tournament.load_json("tournament.json")
     tournament.set_group_stage()
     tournament.display_tournament()
+    tournament.display_games()
     #print(tournament.groups['Group A'].games)
     #print(tournament.groups['Group B'].games)
-   # print(tournament)
+    #print(tournament)
