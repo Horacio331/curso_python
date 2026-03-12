@@ -38,6 +38,15 @@ class Game:
             0, Sport.max_score[self.team_a.sport.name])
         self.score[self.team_b.name] = random.randint(
             0, Sport.max_score[self.team_b.sport.name])
+        if self.score[self.team_a.name] > self.score[self.team_b.name]:
+            self.winner = self.team_a
+            self.loser = self.team_b
+        elif self.score[self.team_a.name] < self.score[self.team_b.name]:
+            self.winner = self.team_b
+            self.loser = self.team_a
+        else:
+            self.winner = None
+            self.loser = None
 
     def __str__(self):
         """ String representation of the Game class. """
@@ -136,8 +145,8 @@ def a_tournament():
                        team_spain, team_brazil, team_italia, team_japan]
     return [team.to_json() for team in tournament_list]
 
-
 if __name__ == "__main__":
     string_game = a_tournament()
+    print(string_game)
     save_game_to_json(string_game, "tournament.json")
     print(string_game)

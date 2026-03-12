@@ -3,7 +3,7 @@ Docstring for game_tournament.Tournament
 """
 import random
 import json
-from game import Game
+from Game import Game
 from Team import Team
 from Sport import Sport
 from Athlete import Athlete
@@ -61,7 +61,7 @@ class Tournament:
             self.set_group(group_b, "Group B")
     def load_json(self, filename):
         """ Load a Tournament object from a JSON file."""
-        # print("Tournament") when you run the program its appears 2 times.
+        print("Tournament")
         with open(filename, 'r', encoding="utf-8") as f:
             data = json.load(f)
             for team_data in data:
@@ -80,20 +80,83 @@ class Tournament:
         print(f"Tournament: {self.name}")
         for group in self.groups:
             self.groups[group].display_group()
+        self.display_games()
+    def display_games(self):
+        """ Display the games. """
         for group in self.groups:
             self.groups[group].display_group_games()
-    
-    def display_games(self):
-        """ Display the games """
-        for game in self.games:
+    def play_games(self):
+        """ Play the games. """
+        for group in self.groups:
+            self.groups[group].play_group_games()
+        self.display_games()
+        self.display_standings()
+        self.set_knockout_stage()
+        self.play_knockout_stage()
+        self.play_final_stage()
+        self.display_final_stage()
+    def display_standings(self):
+        """ Display the standings of the tournament. """
+        for group in self.groups:
+            self.groups[group].display_standings()
+    def get_qualified_teams(self):
+        """ Get the qualified teams for the next stage. """
+        qualified_teams = []
+        for group in self.groups:
+            qualified_teams.append(self.groups[group].get_qualified_teams())
+        return qualified_teams
+    def set_knockout_stage(self):
+        """ Set the knockout stage """
+        qualified_teams = self.get_qualified_teams()
+        self.knockout_stage = []
+        g1 = Game(qualified_teams[0][0],qualified_teams[1][1])
+        g2 = Game(qualified_teams[0][1],qualified_teams[1][0])
+        self.knockout_stage.append(g1)
+        self.knockout_stage.append(g2)
+        print(self.knockout_stage)
+    def play_knockout_stage(self):
+        """ Play the knockout stage """
+        for game in self.knockout_stage:
+            game.play()
+            if game.winner is None:
+                flip = random.randint(0, 1)
+                if flip == 0:
+                    game.winner = game.team_a
+                    game.loser = game.team_b
+                else:
+                    game.winner = game.team_b
+                    game.loser = game.team_a
+        self.display_knockout_stage()
+        self.set_final_stage()
+    def display_knockout_stage(self):
+        """ Display the knockout stage """
+        print("Knockout Stage")
+        for game in self.knockout_stage:
             print(game)
-
+    def set_final_stage(self):
+        """ Set the final stage """
+        self.final_stage = []
+        g1 = Game(self.knockout_stage[0].winner,self.knockout_stage[1].winner)
+        g3 = Game(self.knockout_stage[0].loser,self.knockout_stage[1].loser)
+        self.final_stage.append(g1)
+        self.final_stage.append(g3)
+    def play_final_stage(self):
+        """ Play the final stage """
+        for game in self.final_stage:
+            game.play()
+    def display_final_stage(self):
+        """ Display the final stage """
+        print("Final Stage")
+        for game in self.final_stage:
+            print(game)
+    
 if __name__ == "__main__":
     tournament = Tournament("FIFA World Cup")
     tournament.load_json("tournament.json")
     tournament.set_group_stage()
     tournament.display_tournament()
+   # tournament.set_games()
     tournament.display_games()
     #print(tournament.groups['Group A'].games)
     #print(tournament.groups['Group B'].games)
-    #print(tournament)
+   # print(tournament)
