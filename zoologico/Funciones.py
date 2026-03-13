@@ -44,3 +44,25 @@ def guardar_csv(nombre_archivo, diccionario, campos):
             escritor.writerow(fila)
 
 
+def listar_por_clase(zoo, clases, clase):
+    print(f"\nAnimales de la clase {clase}:")
+    for animal, datos in zoo.items():
+        if datos["clase"] == clase:
+            print(f"- {animal} ({clases[clase]['descripcion']})")
+
+
+def listar_por_caracteristica(zoo, caracteristica, valor):
+    print(f"\nAnimales con {caracteristica} = {valor}:")
+    for animal, datos in zoo.items():
+        if datos.get(caracteristica) == valor:
+            print(f"- {animal}")
+
+
+def agregar_animal(zoo, nuevo_animal: Animal):
+    zoo[nuevo_animal.nombre] = {
+        "nombre": nuevo_animal.nombre,
+        "clase": nuevo_animal.clase,
+        "habitat": nuevo_animal.habitat,
+        "dieta": nuevo_animal.dieta,
+        "caracteristicas": ",".join(nuevo_animal.caracteristicas)
+    }
