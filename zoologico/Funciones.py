@@ -10,7 +10,7 @@ Así la función podrá ser usada para cargar un archivo a la vez en el dicciona
 
 
 """Función para agregar un nuevo animal al diccionario del zoológico. Recibe el diccionario del zoológico y un objeto de la clase Animal."""
-
+import os
 import csv
 class Animal:
     def __init__(self, nombre, clase, habitat, dieta, caracteristicas=None):
@@ -25,14 +25,13 @@ class Animal:
 
     def __repr__(self):
         return f"Animal({self.nombre}, {self.clase}, {self.habitat}, {self.dieta}, {self.caracteristicas})"
-
-
 def cargar_csv_en_diccionario(nombre_archivo, clave):
+    ruta = os.path.join(os.path.dirname(__file__), nombre_archivo)
     diccionario = {}
-    with open(nombre_archivo, newline='', encoding='utf-8') as archivo:
-        lector = csv.DictReader(archivo)
-        for fila in lector:
-            diccionario[fila[clave]] = fila
+    with open(ruta, "r", encoding="utf-8") as archivo:
+        for linea in archivo:
+            valores = linea.strip().split(",")
+            diccionario[valores[0]] = valores[1:]
     return diccionario
 
 
