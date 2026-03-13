@@ -15,7 +15,7 @@ from Funciones import (
 )
 
 def menu():
-    clases = cargar_csv_en_diccionario("clases.csv", "clase")
+    clases = clases = cargar_csv_en_diccionario("clases.csv", "clase")
     zoo = cargar_csv_en_diccionario("zoo.csv", "nombre")
 
     while True:

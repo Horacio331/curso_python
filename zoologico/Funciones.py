@@ -25,6 +25,7 @@ class Animal:
 
     def __repr__(self):
         return f"Animal({self.nombre}, {self.clase}, {self.habitat}, {self.dieta}, {self.caracteristicas})"
+        
 def cargar_csv_en_diccionario(nombre_archivo, clave):
     ruta = os.path.join(os.path.dirname(__file__), nombre_archivo)
     diccionario = {}
