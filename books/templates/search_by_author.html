@@ -16,8 +16,7 @@
     </form>
     <ul>
         {% for book in books_list %}
-        <li>{{ book.title }} by {{ book.author }}</li>
-        <li><a href="/book/{{ book.id }}">View Details</a></li>
+        <li><a href="/book/{{ book.id }}">{{ book.title }}</a> by {{ book.author }}</li>
         {% endfor %}
     </ul>
 </body>

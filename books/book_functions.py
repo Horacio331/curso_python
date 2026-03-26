@@ -28,8 +28,8 @@ def create_author_dictionary(books:list[Book])->dict[str,list[Book]]:
                 author_dict[name].append(book)
     return author_dict
 
-def create_book_dictionary(book_list:list)->dict[str, Book]:
-    """Create a dictionary of book id and book object"""
+def create_book_dictionary(book_list:list)->dict[str,Book]:
+    """Create a dictionary of books and their ids"""
     book_dict = {}
     for book in book_list:
         book_dict[book.id] = book
