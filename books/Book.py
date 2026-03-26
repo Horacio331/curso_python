@@ -28,5 +28,4 @@ if __name__ == "__main__":
     # Load books from csv file
     books = load_books("booklist2000.csv")
     print(books[3])
- 
         
