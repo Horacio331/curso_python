@@ -11,7 +11,7 @@ book_dict = create_book_dictionary(books)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('new_index.html')
 
 @app.route('/search_by_author', methods=['GET', 'POST'])
 def search_by_author():
