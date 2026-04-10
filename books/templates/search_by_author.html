@@ -1,34 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search by Author</title>
-</head>
- <div>
-        <center>
-            <img src="/static/images/libra_online_book_cbg.png" alt="Libra Online Library" height="100">
-        </center>
-    </div>
-    <div>
-        <center>
-            <h1>Libra Online Library</h1>
-            <p>Online library with a collection of books of all genres</p>
-        </center>
-    </div>
-<body>
-    <h1>Search by Author</h1>
-    <form action="/search_by_author" method="post">
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author">
-        <input type="submit" value="Search">
-    </form>
-    <ul>
-        {% for book in books_list %}
-        <li><a href="/book/{{ book.id }}">{{ book.title }}</a> by {{ book.author }}</li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+{% extends "base.html" %}
+{% block title %}Libra Online Library - Search by Author{% endblock %}
+{% block body %}
+<h1>Search by Author</h1>
+<form action="/search_by_author" method="post">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author">
+    <input type="submit" value="Search">
+</form>
+<ul>
+    {% for book in books_list %}
+    <li><a href="/book/{{ book.id }}">{{ book.title }}</a> by {{ book.author }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

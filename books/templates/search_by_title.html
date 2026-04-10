@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Libra Online Library - Search by Title{% endblock %}
+{% block body %}
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+    <h1>Search by Title</h1>
+</div>
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+    <form action="/search_by_title" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        <input type="submit" value="Search">
+    </form>
+</div>
+<div class="container" style="display: flex; justify-content: center; align-items: center;">
+    <ul>
+        {% for book in books_list %}
+        <li><a href="/book/{{ book.id }}">{{ book.title }}</a> by {{ book.author }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
