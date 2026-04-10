@@ -35,7 +35,23 @@ def create_book_dictionary(book_list:list)->dict[str,Book]:
         book_dict[book.id] = book
     return book_dict
 
-if __name__ == "__main__":
+def create_title_dictionary(book_list:list)->dict[str,list[Book]]:
+    """Create a dictionary of titles and their books"""
+    title_dict = {}
+    for book in book_list:
+        if book.title.lower() not in title_dict:
+            title_dict[book.title.lower()] = []
+        title_dict[book.title.lower()].append(book)
+        # Multiple words in title
+        title_words = book.title.lower().split(" ")
+        if len(title_words) >= 2:
+            for word in title_words:   
+                if word not in title_dict:
+                    title_dict[word] = []
+                title_dict[word].append(book)   
+    return title_dict
+
+if __name__ == "__main__":  
     books = load_books("booklist2000.csv")
     print(get_genres(books))
     author_dict = create_author_dictionary(books)
