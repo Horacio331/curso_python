@@ -1,0 +1,20 @@
+"""okey desde el index.html se extiende el base.html y se define el bloque title y body"""
+{% extends "base.html" %}
+{% block title %}Frases Celebres de Películas - Frases{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="mb-4">Frases</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for frase in frases %}
+        <div class="col">
+            <div class="card book-card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ frase.texto }}</h5>
+                    <p class="card-text"><strong>Película:</strong> {{ frase.pelicula.titulo }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

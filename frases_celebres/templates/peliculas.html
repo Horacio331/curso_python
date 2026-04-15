@@ -1,0 +1,21 @@
+"""estamos en el archivo de plantilla de peliculas, extendemos el base.html y definimos el bloque title y body"""
+{% extends "base.html" %}
+{% block title %}Frases Celebres de Películas - Películas{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="mb-4">Películas</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for pelicula in peliculas %}
+        <div class="col">
+            <div class="card book-card h-100">
+                <img src="{{ pelicula.imagen_url }}" class="card-img-top book-img" alt="{{ pelicula.titulo }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pelicula.titulo }}</h5>
+                    <p class="card-text">{{ pelicula.descripcion }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
