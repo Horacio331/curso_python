@@ -1,20 +1,21 @@
-"""okey desde el index.html se extiende el base.html y se define el bloque title y body"""
 {% extends "base.html" %}
-{% block title %}Frases Celebres de Películas - Frases{% endblock %}
+{% block title %}Buscador de Frases{% endblock %}
 {% block body %}
-<div class="container">
-    <h1 class="mb-4">Frases</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for frase in frases %}
-        <div class="col">
-            <div class="card book-card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{ frase.texto }}</h5>
-                    <p class="card-text"><strong>Película:</strong> {{ frase.pelicula.titulo }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+<div class="container mt-4">
+    <h1 class="mb-4">Buscar Frases</h1>
+        <form action="/frase" method="post">
+            <label for="frase">Frase:</label>
+            <input type="text" id="frase" name="frase">
+            <label for="umbral">Umbral:</label>
+            <input type="range" class="form-range" id="umbral" min="0" max="1" step="0.01" name="umbral" value="0.70">
+            <input type="submit" value="Buscar">
+        </form>
     </div>
-</div>
+    <div>
+        <ul>
+            {% for frase in frases %}
+                <li>{{ frase.frase }} - {{ frase.pelicula }} {{ frase.ratio }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
