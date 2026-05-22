@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <h1 class="display-5 fw-bold text-secondary">Panel de Control de Documentos</h1>
+    <p class="col-md-8 fs-4">Estado actual de los archivos indexados por el motor OCR.</p>
+    <hr class="my-4">
+    
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card border-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Documentos Indexados</h5>
+                    <p class="display-4 fw-bold text-primary">{{ total_docs }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Palabras Totales</h5>
+                    <p class="display-4 fw-bold text-success">{{ total_palabras }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-info mb-3">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Documentos por Año</h5>
+                    <ul class="list-group list-group-flush text-start">
+                        {% for anio, cant in docs_por_anio.items() %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                📅 Año {{ anio }}:
+                                <span class="badge bg-info rounded-pill">{{ cant }} documentos</span>
+                            </li>
+                        {% else %}
+                            <li class="list-group-item text-muted text-center">Sin documentos</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

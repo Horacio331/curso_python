@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card shadow-sm p-4 bg-white mb-4">
+    <h2 class="text-secondary mb-3">Configuración de Fuentes</h2>
+    <form method="POST" action="/configuration" class="row g-3">
+        <div class="col-md-10">
+            <input type="url" name="url_nueva" class="form-control" placeholder="https://ejemplo.com/reuniones/" required>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-dark w-100 fw-bold">ADD</button>
+        </div>
+    </form>
+</div>
+
+<div class="card shadow-sm p-4 bg-white">
+    <h5 class="text-muted mb-3">Direcciones Agregadas de Forma Local</h5>
+    <ul class="list-group">
+        {% for url in urls.keys() %}
+            <li class="list-group-item text-secondary text-truncate">🔗 {{ url }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4 text-secondary">Administración del Scrapper</h2>
+
+{% for url, info in urls.items() %}
+<div class="card mb-3 shadow-sm">
+    <div class="card-body d-flex justify-content-between align-items-center bg-white">
+        <div>
+            <h5 class="card-title text-truncate" style="max-width: 600px;">{{ url }}</h5>
+            <p class="card-text">Status: 
+                <span class="badge {% if info.status == 'Escrapeada' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                    {{ info.status }}
+                </span>
+            </p>
+        </div>
+        <form action="/run_scrapper" method="POST">
+            <input type="hidden" name="url" value="{{ url }}">
+            <button type="submit" class="btn btn-primary px-4">Iniciar Escrapeo</button>
+        </form>
+    </div>
+    {% if info.files %}
+    <div class="card-footer bg-light">
+        <h6 class="text-muted small fw-bold">Archivos extraídos:</h6>
+        <ul class="list-group list-group-flush">
+            {% for file in info.files %}
+                <li class="list-group-item py-1 bg-transparent text-success small">📄 {{ file }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
